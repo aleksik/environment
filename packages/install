@@ -1,0 +1,11 @@
+#!/bin/bash
+
+HOST="$(hostname)"
+sudo apt-get update
+
+for file in ./group/"$HOST"/*; do
+    echo "Installing packages from $file ..."
+    xargs -r sudo apt-get install -y < "$file"
+    echo "Done installing packages from $file"
+    echo
+done
