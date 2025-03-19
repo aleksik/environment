@@ -1,16 +1,21 @@
 #!/bin/bash
 
-HOST="$(hostname)"
+if [[ "$(uname)" == "Darwin" ]]; then
+    # Install Node.js via nvm
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.2/install.sh | bash
+    
+    # Install homebrew packages
+    xargs -r brew install < ./devices/macs/brew
+    xargs -r brew install --cask < ./devices/macs/brew-cask
+else     
+    HOST="$(hostname)"
+    sudo add-apt-repository ppa:neovim-ppa/unstable -y
+    sudo apt-get update
 
-sudo add-apt-repository ppa:neovim-ppa/unstable -y
-
-sudo apt-get update
-
-for file in ./group/"$HOST"/*; do
-    echo "Installing packages from $file ..."
-    xargs -r sudo apt-get install -y < "$file"
-    echo "Done installing packages from $file"
-    echo
-done
-
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+    for file in ./devices/"$HOST"/*; do
+        echo "Installing packages from $file ..."
+        xargs -r sudo apt-get install -y < "$file"
+        echo "Done installing packages from $file"
+        echo
+    done
+fi
