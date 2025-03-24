@@ -1,3 +1,5 @@
 font-family = Hack Nerd Font
 font-thicken = true
 adjust-cell-height = 8
+
+background = #252339
