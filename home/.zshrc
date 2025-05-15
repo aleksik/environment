@@ -105,6 +105,8 @@ source $ZSH/oh-my-zsh.sh
 
 export GPG_TTY=$(tty)
 
+export EDITOR=nvim
+
 alias bat=batcat
 
 export NVM_DIR="$HOME/.nvm"
@@ -117,3 +119,5 @@ export NVM_DIR="$HOME/.nvm"
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+
